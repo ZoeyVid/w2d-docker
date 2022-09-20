@@ -5,8 +5,7 @@ services:
         image: sancraftdev/w2d-docker
         restart: always
         volumes:
-        - "/opt/w2d/logs.txt:/app/logs.tx"
-        - "/opt/w2d/storage.db:/app/storage.db"
+        - "/opt/w2d.db:/app/storage.db"
         environment:
         - "TZ=Europe/Berlin"
         tty: true
