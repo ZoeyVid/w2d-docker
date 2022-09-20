@@ -1,6 +1,6 @@
 FROM node:18.9.0-alpine3.16 as build
 
-RUN apk add --no-cache git python3 make gcc
+RUN apk add --no-cache ca-certificates git python3 make gcc
 
 RUN git clone --recursive https://github.com/FKLC/WhatsAppToDiscord /app
 WORKDIR /app
