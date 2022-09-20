@@ -1,0 +1,13 @@
+version: "3"
+services:
+    w2d:
+        container_name: w2d
+        image: sancraftdev/w2d-docker
+        restart: always
+        volumes:
+        - "/opt/w2d/logs.txt:/app/acme.sh"
+        - "/opt/w2d/storage.db:/app/acme.sh"
+        environment:
+        - "TZ=Europe/Berlin"
+        tty: true
+        stdin_open: true
