@@ -1,15 +1,17 @@
-FROM node:18.9.0-alpine3.16
+FROM node:18.9.0-alpine3.16 as build
 
-RUN apk add --no-cache ca-certificates shadow git python3 make gcc
-RUN useradd w2d
+RUN apk add --no-cache ca-certificates git python3 make gcc
 
 RUN git clone --recursive https://github.com/FKLC/WhatsAppToDiscord /app
 WORKDIR /app
 
 RUN npm install
 
-RUN apk add --no-cache shadow git python3 make gcc
+FROM node:18.9.0-alpine3.16
 
-USER w2d
+RUN apk add --no-cache ca-certificates
+
+COPY --from=build /app /app
+WORKDIR /app
 
 ENTRYPOINT node .
