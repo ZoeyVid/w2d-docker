@@ -6,6 +6,7 @@ ARG W2D_VERSION=v0.8.2
 
 RUN git clone --recursive https://github.com/FKLC/WhatsAppToDiscord --branch ${W2D_VERSION} /app
 WORKDIR /app
+RUN rm -rf yarn.lock
 
 RUN yarn
 
