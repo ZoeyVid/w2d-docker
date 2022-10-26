@@ -2,7 +2,7 @@ FROM alpine:3.16.2 as build
 
 RUN apk add --no-cache ca-certificates nodejs-current yarn git
 
-ARG W2D_VERSION=v0.8.2
+ARG W2D_VERSION=v0.8.5
 
 RUN git clone --recursive https://github.com/FKLC/WhatsAppToDiscord --branch ${W2D_VERSION} /app
 WORKDIR /app
