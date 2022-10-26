@@ -1,0 +1,35 @@
+name: dependency-update
+
+on:
+  schedule:
+    - cron:  "0 */6 * * *"
+  workflow_dispatch:
+
+jobs:
+  w2d-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: update w2d version
+        id: update
+        run: |
+          W2D_VERSION="$(
+          git ls-remote --tags https://github.com/FKLC/WhatsAppToDiscord \
+              | cut -d/ -f3 \
+              | sort -V \
+              | tail -1
+          )"
+          sed -i "s|ARG W2D_VERSION=.*|ARG W2D_VERSION=$W2D_VERSION|" ./Dockerfile
+          echo "version=$W2D_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          signoff: true
+          delete-branch: true
+          commit-message: update w2d version to ${{ steps.update.outputs.version }}
+          branch: update-w2d-version
+          title: update w2d version to ${{ steps.update.outputs.version }}
+          body: update w2d version to ${{ steps.update.outputs.version }}
