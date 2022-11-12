@@ -1,4 +1,4 @@
-FROM alpine:3.16.3 as build
+FROM alpine:20221110 as build
 
 RUN apk add --no-cache ca-certificates nodejs-current yarn git
 
@@ -11,7 +11,7 @@ RUN yarn --no-lockfile
 
 RUN rm -rf yarn.lock install_script.sh README.md LICENSE.txt .gitignore .eslintrc.js docs .github .git package.json
 
-FROM alpine:3.16.3
+FROM alpine:20221110
 
 RUN apk add --no-cache ca-certificates nodejs-current
 
