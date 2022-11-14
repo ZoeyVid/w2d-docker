@@ -1,5 +1,6 @@
 FROM alpine:20221110 as build
 
+RUN apk upgrade --no-cache
 RUN apk add --no-cache ca-certificates nodejs-current yarn git
 
 ARG W2D_VERSION=v0.8.5
