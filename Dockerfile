@@ -14,6 +14,7 @@ RUN rm -rf yarn.lock install_script.sh README.md LICENSE.txt .gitignore .eslintr
 
 FROM alpine:20221110
 
+RUN apk upgrade --no-cache
 RUN apk add --no-cache ca-certificates nodejs-current
 
 COPY --from=build /app /app
