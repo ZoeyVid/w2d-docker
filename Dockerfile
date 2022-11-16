@@ -1,7 +1,7 @@
 FROM alpine:20221110 as build
 
 RUN apk upgrade --no-cache
-RUN apk add --no-cache ca-certificates nodejs-current yarn git
+RUN apk add --no-cache ca-certificates wget nodejs-current yarn git
 
 ARG W2D_VERSION=v0.8.5
 
@@ -15,7 +15,7 @@ RUN rm -rf yarn.lock install_script.sh README.md LICENSE.txt .gitignore .eslintr
 FROM alpine:20221110
 
 RUN apk upgrade --no-cache
-RUN apk add --no-cache ca-certificates nodejs-current
+RUN apk add --no-cache ca-certificates wget nodejs-current
 
 COPY --from=build /app /app
 WORKDIR /app
