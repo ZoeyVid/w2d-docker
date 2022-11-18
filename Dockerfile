@@ -18,4 +18,4 @@ RUN apk upgrade --no-cache && \
 COPY --from=build /app /app
 WORKDIR /app
 
-ENTRYPOINT node src/index.js
+ENTRYPOINT ["node", "src/index.js"]
