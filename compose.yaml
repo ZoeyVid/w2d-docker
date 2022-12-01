@@ -2,7 +2,7 @@ version: "3"
 services:
     w2d:
         container_name: w2d
-        image: sancraftdev/w2d-docker
+        image: zoeyvid/w2d-docker
         restart: always
         volumes:
         - "/opt/w2d.db:/app/storage.db"
