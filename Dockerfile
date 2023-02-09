@@ -5,7 +5,7 @@ RUN apk add --no-cache ca-certificates wget tzdata git nodejs-current yarn
 
 ARG W2D_VERSION=v0.8.5
 
-RUN git clone --recursive https://github.com/FKLC/WhatsAppToDiscord --branch ${W2D_VERSION} /app
+RUN git clone --recursive https://github.com/FKLC/WhatsAppToDiscord --branch "$W2D_VERSION" /app
 WORKDIR /app
 
 RUN yarn --no-lockfile
