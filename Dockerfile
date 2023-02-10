@@ -1,4 +1,4 @@
-FROM alpine:20230208 as build
+FROM alpine:3.17.1 as build
 
 RUN apk upgrade --no-cache
 RUN apk add --no-cache ca-certificates wget tzdata git nodejs-current yarn
@@ -10,7 +10,7 @@ WORKDIR /app
 
 RUN yarn --no-lockfile
 
-FROM alpine:20230208
+FROM alpine:3.17.1
 
 RUN apk upgrade --no-cache && \
     apk add --no-cache ca-certificates wget tzdata nodejs-current
