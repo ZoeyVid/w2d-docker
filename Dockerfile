@@ -8,7 +8,7 @@ ARG W2D_VERSION=v0.8.5
 RUN git clone --recursive https://github.com/FKLC/WhatsAppToDiscord --branch "$W2D_VERSION" /app
 WORKDIR /app
 
-RUN yarn --no-lockfile
+RUN yarn --no-lockfile --production=true
 
 FROM alpine:3.17.2
 
