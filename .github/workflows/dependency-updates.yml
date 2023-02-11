@@ -1,18 +1,15 @@
 name: dependency-updates
-
 on:
   push:
   schedule:
-    - cron:  "0 */6 * * *"
+    - cron: "0 */6 * * *"
   workflow_dispatch:
-
 jobs:
   w2d-update:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
       - name: update w2d version
         id: update
         run: |
@@ -24,7 +21,6 @@ jobs:
           )"
           sed -i "s|ARG W2D_VERSION=.*|ARG W2D_VERSION=$W2D_VERSION|" ./Dockerfile
           echo "version=$W2D_VERSION" >> $GITHUB_OUTPUT
-
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
