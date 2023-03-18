@@ -1,7 +1,7 @@
 FROM --platform="$BUILDPLATFORM" alpine:3.17.2 as build
 
 ARG NODE_ENV=production \
-    W2D_VERSION=v0.9.0 \
+    ARG W2D_VERSION=v0.9.0 \
     TARGETARCH
     
 RUN apk upgrade --no-cache && \
