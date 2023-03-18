@@ -19,7 +19,7 @@ jobs:
               | sort -V \
               | tail -1
           )"
-          sed -i "s|W2D_VERSION=.*|ARG W2D_VERSION=$W2D_VERSION \\\|" ./Dockerfile
+          sed -i "s|W2D_VERSION=.*|W2D_VERSION=$W2D_VERSION \\\|" ./Dockerfile
           echo "version=$W2D_VERSION" >> $GITHUB_OUTPUT
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
