@@ -13,7 +13,8 @@ RUN apk add --no-cache ca-certificates nodejs-current yarn git && \
     elif [ "$TARGETARCH" = "arm64" ]; then \
     npm_config_target_platform=linux npm_config_target_arch=arm64 yarn install --no-lockfile; \
     fi && \
-    node-prune
+    node-prune && \
+    yarn cache clean —all
 
 FROM alpine:3.17.2
 RUN apk add --no-cache ca-certificates tzdata nodejs-current
