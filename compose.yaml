@@ -5,8 +5,8 @@ services:
         image: zoeyvid/w2d-docker
         restart: always
         volumes:
-#        - "/opt/w2d:/app/storage" # only needed for migration from version lower then v0.10.7
-        - "/opt/w2d.db:/app/storage.db"
+        - "/opt/w2d:/app/storage"
+#        - "/opt/w2d.db:/app/storage.db" # only needed for migration from version lower then v0.10.7
         environment:
         - "TZ=Europe/Berlin"
         tty: true
