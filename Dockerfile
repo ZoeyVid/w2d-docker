@@ -13,13 +13,13 @@ RUN apk add --no-cache ca-certificates git && \
     npm_config_target_platform=linux npm_config_target_arch=x64 yarn install --no-lockfile && \
     node-prune && \
     yarn cache clean --all && \
-    src/index.js --bundle --platform=node --external:sharp --external:qrcode-terminal --external:jimp --external:link-preview-js --target=node18 --outfile=out.js && \
+    esbuild src/index.js --bundle --platform=node --external:sharp --external:qrcode-terminal --external:jimp --external:link-preview-js --target=node18 --outfile=out.js && \
     pkg -t alpine-x64 -C Brotli --output rvx-builder out.js; \
     elif [ "$TARGETARCH" = "arm64" ]; then \
     npm_config_target_platform=linux npm_config_target_arch=arm64 yarn install --no-lockfile && \
     node-prune && \
     yarn cache clean --all && \
-    src/index.js --bundle --platform=node --external:sharp --external:qrcode-terminal --external:jimp --external:link-preview-js --target=node18 --outfile=out.js && \
+    esbuild src/index.js --bundle --platform=node --external:sharp --external:qrcode-terminal --external:jimp --external:link-preview-js --target=node18 --outfile=out.js && \
     pkg -t alpine-arm64 -C Brotli --output rvx-builder out.js; \
     fi && \
     chmod +x /src/WA2DC
