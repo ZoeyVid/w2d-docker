@@ -6,19 +6,21 @@ ARG NODE_ENV=production \
 
 WORKDIR /src
 RUN apk add --no-cache ca-certificates git && \
-    yarn global add pkg && \
+    yarn global add pkg esbuild && \
     wget https://gobinaries.com/tj/node-prune -O - | sh && \
     git clone --recursive https://github.com/FKLC/WhatsAppToDiscord --branch "$W2D_VERSION" /src && \
     if [ "$TARGETARCH" = "amd64" ]; then \
     npm_config_target_platform=linux npm_config_target_arch=x64 yarn install --no-lockfile && \
     node-prune && \
     yarn cache clean --all && \
-    pkg -t alpine-x64 -C Brotli --output rvx-builder /src; \
+    src/index.js --bundle --platform=node --external:sharp --external:qrcode-terminal --external:jimp --external:link-preview-js --target=node18 --outfile=out.js && \
+    pkg -t alpine-x64 -C Brotli --output rvx-builder out.js; \
     elif [ "$TARGETARCH" = "arm64" ]; then \
     npm_config_target_platform=linux npm_config_target_arch=arm64 yarn install --no-lockfile && \
     node-prune && \
     yarn cache clean --all && \
-    pkg -t alpine-arm64 -C Brotli --output rvx-builder /src; \
+    src/index.js --bundle --platform=node --external:sharp --external:qrcode-terminal --external:jimp --external:link-preview-js --target=node18 --outfile=out.js && \
+    pkg -t alpine-arm64 -C Brotli --output rvx-builder out.js; \
     fi && \
     chmod +x /src/WA2DC
 
