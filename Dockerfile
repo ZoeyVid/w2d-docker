@@ -17,7 +17,7 @@ RUN apk add --no-cache ca-certificates nodejs-current yarn git && \
     yarn cache clean --all
 
 FROM alpine:3.18.2
-RUN apk add --no-cache ca-certificates tzdata nodejs-current
+RUN apk add --no-cache ca-certificates tzdata tini nodejs-current
 COPY --from=build /app /app
 WORKDIR /app
-ENTRYPOINT ["node", "src/index.js"]
+ENTRYPOINT ["tini", "--", "node", "src/index.js"]
