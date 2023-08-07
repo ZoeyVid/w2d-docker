@@ -1,4 +1,4 @@
-FROM --platform="$BUILDPLATFORM" alpine:3.18.2 as build
+FROM --platform="$BUILDPLATFORM" alpine:3.18.3 as build
 
 ARG NODE_ENV=production \
     W2D_VERSION=v0.10.17 \
@@ -16,7 +16,7 @@ RUN apk add --no-cache ca-certificates nodejs-current yarn git && \
     node-prune && \
     yarn cache clean --all
 
-FROM alpine:3.18.2
+FROM alpine:3.18.3
 RUN apk add --no-cache ca-certificates tzdata tini nodejs-current
 COPY --from=build /app /app
 WORKDIR /app
