@@ -1,4 +1,4 @@
-FROM --platform="$BUILDPLATFORM" node:18.18.0-alpine3.18 as build
+FROM --platform="$BUILDPLATFORM" node:18.18.1-alpine3.18 as build
 
 ARG NODE_ENV=production \
     W2D_VERSION=v0.10.13 \
