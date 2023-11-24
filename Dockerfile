@@ -1,7 +1,7 @@
 FROM --platform="$BUILDPLATFORM" alpine:3.18.4 as build
 
 ARG NODE_ENV=production \
-    W2D_VERSION=v0.10.20 \
+    W2D_VERSION=v0.10.22 \
     TARGETARCH
     
 RUN apk add --no-cache ca-certificates nodejs-current yarn git && \
