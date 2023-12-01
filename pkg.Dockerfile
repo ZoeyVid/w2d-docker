@@ -24,7 +24,7 @@ RUN apk add --no-cache ca-certificates git && \
     fi && \
     chmod +x /src/WA2DC
 
-FROM alpine:3.18.4
+FROM alpine:3.18.5
 RUN apk add --no-cache ca-certificates tzdata
 COPY --from=build /src/WA2DC /usr/local/bin/WA2DC
 WORKDIR /app
