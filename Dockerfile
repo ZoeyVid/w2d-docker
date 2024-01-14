@@ -1,7 +1,7 @@
 FROM --platform="$BUILDPLATFORM" alpine:3.19.0 as build
 
 ARG NODE_ENV=production \
-    W2D_VERSION=v0.10.24 \
+    W2D_VERSION=v0.10.25 \
     TARGETARCH
     
 RUN apk add --no-cache ca-certificates nodejs-current yarn git && \
@@ -20,4 +20,4 @@ FROM alpine:3.19.0
 RUN apk add --no-cache ca-certificates tzdata tini nodejs-current
 COPY --from=build /app /app
 WORKDIR /app
-ENTRYPOINT ["tini", "--", "node", "src/index.js"]
+ENTRYPOINT ["tini", "--", "node", "src/index.js", "--skip-update"]
