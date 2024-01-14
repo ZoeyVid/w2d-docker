@@ -20,4 +20,4 @@ FROM alpine:3.19.0
 RUN apk add --no-cache ca-certificates tzdata tini nodejs-current
 COPY --from=build /app /app
 WORKDIR /app
-ENTRYPOINT ["tini", "--", "node", "src/index.js"]
+ENTRYPOINT ["tini", "--", "node", "src/index.js", "--skip-update"]
