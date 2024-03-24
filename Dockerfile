@@ -4,7 +4,8 @@ ARG NODE_ENV=production \
     W2D_VERSION=v0.10.25 \
     TARGETARCH
     
-RUN apk add --no-cache ca-certificates nodejs-current yarn git && \
+RUN apk upgrade --no-cache -a && \
+    apk add --no-cache ca-certificates nodejs-current yarn git && \
     wget https://gobinaries.com/tj/node-prune -O - | sh && \
     git clone --recursive https://github.com/FKLC/WhatsAppToDiscord --branch "$W2D_VERSION" /app && \
     cd /app && \
@@ -17,7 +18,8 @@ RUN apk add --no-cache ca-certificates nodejs-current yarn git && \
     yarn cache clean --all
 
 FROM alpine:3.19.1
-RUN apk add --no-cache ca-certificates tzdata tini nodejs-current
+RUN apk upgrade --no-cache -a && \
+    apk add --no-cache ca-certificates tzdata tini nodejs-current
 COPY --from=build /app /app
 WORKDIR /app
 ENTRYPOINT ["tini", "--", "node", "src/index.js", "--skip-update"]
