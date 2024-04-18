@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:labs
 FROM --platform="$BUILDPLATFORM" alpine:3.19.1 as build
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 ARG NODE_ENV=production \
