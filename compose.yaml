@@ -8,5 +8,6 @@ services:
       - "/opt/w2d/downloads:/app/downloads"
     environment:
       - "TZ=Europe/Berlin"
+    user: root
     tty: true
     stdin_open: true
