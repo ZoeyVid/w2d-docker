@@ -4,11 +4,11 @@ ARG NODE_ENV=production \
     W2D_VERSION=v0.10.25 \
     TARGETARCH
 
-WORKDIR /app
 RUN apk upgrade --no-cache -a && \
     apk add --no-cache ca-certificates nodejs-current yarn git && \
     wget -q https://gobinaries.com/tj/node-prune -O - | sh && \
     git clone --recursive https://github.com/FKLC/WhatsAppToDiscord --branch "$W2D_VERSION" /app && \
+    cd /app && \
     if [ "$TARGETARCH" = "amd64" ]; then \
     npm_config_target_platform=linux npm_config_target_arch=x64 yarn install --no-lockfile; \
     elif [ "$TARGETARCH" = "arm64" ]; then \
