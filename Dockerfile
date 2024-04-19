@@ -7,7 +7,7 @@ ARG NODE_ENV=production \
 
 RUN apk upgrade --no-cache -a && \
     apk add --no-cache ca-certificates nodejs-current yarn git && \
-    wget -q https://gobinaries.com/tj/node-prune -O - | sh && \
+    yarn global add clean-modules && \
     git clone --recursive https://github.com/FKLC/WhatsAppToDiscord --branch "$W2D_VERSION" /app && \
     cd /app && \
     if [ "$TARGETARCH" = "amd64" ]; then \
@@ -15,7 +15,7 @@ RUN apk upgrade --no-cache -a && \
     elif [ "$TARGETARCH" = "arm64" ]; then \
     npm_config_target_platform=linux npm_config_target_arch=arm64 yarn install --no-lockfile; \
     fi && \
-    node-prune && \
+    clean-modules --yes && \
     yarn cache clean --all
 
 FROM alpine:3.19.1
