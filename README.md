@@ -1,4 +1,4 @@
-# git-updates
+# w2d-docker
 
 ## How to use?
 
