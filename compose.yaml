@@ -8,6 +8,7 @@ services:
       - "/opt/w2d/downloads:/app/downloads"
     environment:
       - "TZ=Europe/Berlin"
+      - "WA2DC_TOKEN=your-discord-bot-token"
     user: 1000:1000
     tty: true
     stdin_open: true
