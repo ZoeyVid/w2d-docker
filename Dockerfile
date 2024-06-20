@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:labs
-FROM --platform="$BUILDPLATFORM" alpine:3.20.1 as build
+FROM --platform="$BUILDPLATFORM" alpine:3.20.1 AS build
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 ARG NODE_ENV=production \
     W2D_VERSION=v0.10.26 \
