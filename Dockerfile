@@ -20,7 +20,7 @@ RUN apk upgrade --no-cache -a && \
     yarn cache clean --all && \
     clean-modules --yes
 FROM alpine:3.20.1 AS strip
-COPY --from=build-backend /app /app
+COPY --from=build /app /app
 RUN apk upgrade --no-cache -a && \
     apk add --no-cache ca-certificates binutils file && \
     find /app/node_modules -name "*.node" -exec strip -s {} \; && \
