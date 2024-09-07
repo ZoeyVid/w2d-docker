@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:labs
-FROM --platform="$BUILDPLATFORM" alpine:3.20.2 AS build
+FROM --platform="$BUILDPLATFORM" alpine:3.20.3 AS build
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 ARG NODE_ENV=production \
     W2D_VERSION=v0.10.26 \
@@ -19,14 +19,14 @@ RUN apk upgrade --no-cache -a && \
     fi && \
     yarn cache clean --all && \
     clean-modules --yes
-FROM alpine:3.20.2 AS strip
+FROM alpine:3.20.3 AS strip
 COPY --from=build /app /app
 RUN apk upgrade --no-cache -a && \
     apk add --no-cache ca-certificates binutils file && \
     find /app/node_modules -name "*.node" -type f -exec strip -s {} \; && \
     find /app/node_modules -name "*.node" -type f -exec file {} \;
 
-FROM alpine:3.20.2
+FROM alpine:3.20.3
 RUN apk upgrade --no-cache -a && \
     apk add --no-cache ca-certificates tzdata tini nodejs-current
 COPY --from=strip /app /app
