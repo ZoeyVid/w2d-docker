@@ -2,7 +2,7 @@
 FROM --platform="$BUILDPLATFORM" alpine:3.20.3 AS build
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 ARG NODE_ENV=production \
-    W2D_VERSION=v0.10.26 \
+    W2D_VERSION=v0.10.27 \
     TARGETARCH
 
 RUN apk upgrade --no-cache -a && \
