@@ -8,7 +8,7 @@ ARG NODE_ENV=production \
 RUN apk upgrade --no-cache -a && \
     apk add --no-cache ca-certificates git nodejs yarn && \
     yarn global add clean-modules && \
-    git clone --recursive https://github.com/FKLC/WhatsAppToDiscord --branch "$W2D_VERSION" /app && \
+    git clone --depth 1 https://github.com/FKLC/WhatsAppToDiscord --branch "$W2D_VERSION" /app && \
     cd /app && \
     if [ "$TARGETARCH" = "amd64" ]; then \
       npm_config_arch=x64 npm_config_target_arch=x64 yarn install --no-lockfile && \
